@@ -4,20 +4,8 @@
 
 <header class="page-header">
   <h1>{{ .Title }}</h1>
-  <div class="post-description"></div>
-  <ul class="post-tags">
-    {{- $scratch := newScratch }}
-    {{- range $pages }}
-      {{- $scratch.Add "tags" .Params.tags }}
-    {{- end }}
-    {{- $tags := $scratch.Get "tags" | uniq | sort }}
-
-    {{- range $tag := $tags }}
-      {{- with site.GetPage (path.Join "tags" ($tag | urlize)) }}
-      <li><a href="{{ .Permalink }}">{{ .LinkTitle }} <sup><strong><sup>{{ index .Site.Taxonomies.tags ($tag | urlize) | len }}</sup></strong></sup></a></li>
-      {{- end }}
-    {{- end }}
-  </ul>
+  
+  
 </header>
 
 {{- range $pages.GroupByPublishDate "2006" }}
@@ -68,5 +56,18 @@
 </div>
 {{- end }}
 {{- end }}
+<div class="post-description"></div>
+<ul class="post-tags">
+  {{- $scratch := newScratch }}
+  {{- range $pages }}
+    {{- $scratch.Add "tags" .Params.tags }}
+  {{- end }}
+  {{- $tags := $scratch.Get "tags" | uniq | sort }}
 
+  {{- range $tag := $tags }}
+    {{- with site.GetPage (path.Join "tags" ($tag | urlize)) }}
+    <li><a href="{{ .Permalink }}">{{ .LinkTitle }} <sup><strong><sup>{{ index .Site.Taxonomies.tags ($tag | urlize) | len }}</sup></strong></sup></a></li>
+    {{- end }}
+  {{- end }}
+</ul>
 {{- end }}
