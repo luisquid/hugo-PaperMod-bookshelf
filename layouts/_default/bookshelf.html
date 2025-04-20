@@ -4,13 +4,14 @@
 
 <header class="page-header">
   <h1>{{ .Title }}</h1>
+  <hr>
 </header>
 {{/* Added current reading section on bookshelf */}}
 {{- range $pages.GroupByParam "current"}}
   {{- if eq .Key true}}
   <div class="archive-year">
     <h2 class="archive-year-header">
-      Current<sup class="archive-count">&nbsp;&nbsp;{{ len .Pages }} {{ if gt (len .Pages) 1 }}books{{ else }}book{{ end }}</sup>
+      Currently Reading<sup class="archive-count">&nbsp;&nbsp;{{ len .Pages }} {{ if gt (len .Pages) 1 }}books{{ else }}book{{ end }}</sup>
     </h2>
     <div class="archive-books">
       {{- range .Pages }}
