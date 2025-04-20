@@ -1,7 +1,7 @@
 {{- define "main" }}
 
 {{- $pages := where site.RegularPages ".Params.categories" "intersect" (slice "Book") }}
-
+{{- $currentBooks := where $pages ".Params.current" true}}
 <header class="page-header">
   <h1>{{ .Title }}</h1>
   <hr>
