@@ -1,6 +1,7 @@
 ---
 title: {{ replace .Name "-" " " | title }}
 sub_title: Example sub-title
+type: "book"
 date: {{ dateFormat "2006-01-02" .Date }}
 authors:
   - {{ .Site.Params.author }}
